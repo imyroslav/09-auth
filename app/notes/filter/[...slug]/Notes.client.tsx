@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useDebounce } from "use-debounce";
-import { getNotes } from "../../../../lib/api";
+import { getNotes } from "../../../../lib/api/api";
 import SearchBox from "../../../../components/SearchBox/SearchBox";
 import NoteList from "../../../../components/NoteList/NoteList";
 import Pagination from "../../../../components/Pagination/Pagination";
 // import { NoteForm } from "../../../../components/NoteForm/NoteForm";
 import Link from 'next/link';
 // import Modal from "../../../../components/Modal/Modal";
-import type { GetNotes } from "../../../../lib/api";
+import type { GetNotes } from "../../../../lib/api/api";
 import css from "./page.module.css";
 
 export default function Notes({ initialData, tag }: { initialData: GetNotes, tag: string }) {
