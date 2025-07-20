@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useAuthStore } from "../../lib/store/authStore"
-import { logout } from "lib/api/clientApi"
+import { logout } from "../../lib/api/clientApii"
 import { useRouter } from "next/navigation"
 import css from "./AuthNavigation.module.css"
 

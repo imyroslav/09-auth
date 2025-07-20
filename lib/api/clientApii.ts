@@ -1,6 +1,6 @@
-import type { User, RegisteredUser, CreateUserData, SessionResponseData } from "../../types/user"
-import type { Note, NewNoteData, GetNotes } from "../../types/note"
-import nextServer from "./api"
+import type { User, RegisteredUser, CreateUserData, SessionResponseData } from "../../types/user";
+import type { Note, NewNoteData, GetNotes } from "../../types/note";
+import nextServer from "./api";
 
 export const register = async (payload: CreateUserData) => {
   const response = await nextServer.post<RegisteredUser>("/auth/register", payload)
