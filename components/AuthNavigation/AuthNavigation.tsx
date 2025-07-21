@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 import { useAuthStore } from "../../lib/store/authStore"
 import { logout } from "../../lib/api/clientApii"
