@@ -35,7 +35,7 @@ export const checkSession = async () => {
   }
 };
 
-export const fetchNotes = async (
+export const getNotes = async (
   page = 1,
   perPage = 12,
   search = "",
