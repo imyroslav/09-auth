@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import css from './TagsMenu.module.css';
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState } from "react";
+import Link from "next/link";
 import { tags } from "../../app/constants/constants"
+import css from "./TagsMenu.module.css";
 
 
 export default function TagsMenu() {

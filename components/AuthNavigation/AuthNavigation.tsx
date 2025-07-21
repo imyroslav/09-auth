@@ -21,7 +21,8 @@ export default function AuthNavigation() {
     router.replace("/sign-in")
   }
 
-  <ul className={css.navigationList}>
+  return (
+    <ul className={css.navigationList}>
       {isAuthenticated ? (
         <>
           <li className={css.navigationItem}>
@@ -64,4 +65,6 @@ export default function AuthNavigation() {
         </>
       )}
     </ul>
+  )
+  
 }
