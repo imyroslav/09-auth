@@ -1,7 +1,7 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { Metadata } from "next";
-import { getNotes } from "../../../../lib/api/api";
-import type { GetNotes } from "../../../../lib/api/api";
+import { getNotesServer } from "../../../../../lib/api/serverApi";
+import type { GetNotes } from "../../../../../types/note";
 import NotesClient from "./Notes.client";
 // import { fetchNoteById } from "../../../../lib/api";
 // import { type Note } from "../../../../types/note"
@@ -48,7 +48,7 @@ export default async function NotesPage({ params }: Props) {
   const rawTag = slug?.[0] || "";
   const tag = rawTag === "All" ? "" : rawTag;
 
-  const data: GetNotes = await getNotes(1, 12, "", tag);
+  const data: GetNotes = await getNotesServer(1, 12, "", tag);
 
   await queryClient.prefetchQuery({
     queryKey: ["notes", 1, "", tag], 

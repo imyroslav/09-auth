@@ -15,7 +15,7 @@ export const getUser = async () => {
   return response.data;
 };
 
-export const fetchNotesServer = async (
+export const getNotesServer = async (
   page = 1,
   perPage = 12,
   search = "",
