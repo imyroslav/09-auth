@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import css from "./SidebarNotes.module.css"; 
-import { tags } from "../../../constants/constants";
+import { tags } from "../../../../constants/constants";
 
 export default function SidebarNotes() {
   return (
