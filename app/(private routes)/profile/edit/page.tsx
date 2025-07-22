@@ -2,7 +2,7 @@ import { getUser } from "../../../../lib/api/serverApi";
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import css from "./ProfilePage.module.css";
+import css from "./EditProfilePage.module.css";
 
 export const metadata: Metadata = {
   title: "Notehub",
