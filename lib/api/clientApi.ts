@@ -47,7 +47,7 @@ export const getNotes = async (
     params.search = search.trim()
   }
 
-  if (tag.trim().toLowerCase() !== "all" && tag.trim() !== "") {
+  if (tag !== "All" && tag.trim() !== "") {
     params.tag = tag.trim()
   }
 
@@ -69,7 +69,7 @@ export const createNote = async (note: NewNoteData): Promise<Note> => {
   return data
 }
 
-export const deleteNote = async (id: number): Promise<Note> => {
+export const deleteNote = async (id: string): Promise<Note> => {
   const { data } = await nextServer.delete<Note>(`/notes/${id}`)
   return data
 }
