@@ -3,13 +3,14 @@
 import { useRouter } from "next/navigation";
 import { createNote } from "../../lib/api/clientApi";
 import type { NewNoteData } from "../../types/note";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNoteDraftStore } from "../../lib/store/noteStore";
 import css from "./NoteForm.module.css";
 
 export const NoteForm = () => {
+
   const router = useRouter();
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
   const { draft, setDraft, clearDraft } = useNoteDraftStore();
 
   const handleChange = (
@@ -25,7 +26,7 @@ export const NoteForm = () => {
     mutationFn: createNote,
     onSuccess: () => {
       clearDraft();
-      // queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
       router.push("/notes/filter/All");
     },
   });
@@ -48,7 +49,6 @@ export const NoteForm = () => {
           type="text"
           className={css.input}
           defaultValue={draft?.title}
-          // value={title}
           onChange={handleChange}
           required
         />
@@ -62,7 +62,6 @@ export const NoteForm = () => {
           rows={8}
           className={css.textarea}
           defaultValue={draft?.content}
-          // value={content}
           onChange={handleChange}
         />
       </div>
