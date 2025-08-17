@@ -1,5 +1,6 @@
-import type { User, RegisteredUser, CreateUserData, SessionResponseData } from "../../types/user";
+import type { User, RegisteredUser, CreateUserData } from "../../types/user";
 import type { Note, NewNoteData, GetNotes } from "../../types/note";
+import type { SessionResponseData } from "../../types/session"
 import nextServer from "./api";
 
 export const register = async (payload: CreateUserData) => {
