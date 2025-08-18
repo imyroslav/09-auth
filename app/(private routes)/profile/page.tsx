@@ -35,15 +35,15 @@ const Profile = async () => {
             Edit Profile
           </Link>
         </div>
-         <div className={css.avatarWrapper}>
-      <Image
-        src={user.avatar}
-        alt="User Avatar"
-        width={120}
-        height={120}
-        className={css.avatar}
-      />
-    </div>
+        <div className={css.avatarWrapper}>
+          <Image
+            src={user.avatar}
+            alt="User Avatar"
+            width={120}
+            height={120}
+            className={css.avatar}
+          />
+        </div>
         <div className={css.profileInfo}>
           <p>Username: {user?.username || "your_username"}</p>
           <p>Email: {user?.email || "your_email@example.com"}</p>

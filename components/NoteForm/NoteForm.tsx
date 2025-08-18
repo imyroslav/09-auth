@@ -1,6 +1,5 @@
 "use client";
 
-// import { useId } from "react";
 import { useRouter } from "next/navigation";
 import { createNote } from "../../lib/api/clientApi";
 import type { NewNoteData } from "../../types/note";
@@ -10,7 +9,6 @@ import css from "./NoteForm.module.css";
 
 export const NoteForm = () => {
 
-  // const fieldId = useId();
   const router = useRouter();
   const queryClient = useQueryClient();
   const { draft, setDraft, clearDraft } = useNoteDraftStore();

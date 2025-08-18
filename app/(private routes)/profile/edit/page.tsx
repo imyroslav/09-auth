@@ -1,56 +1,84 @@
-import { getUser } from "../../../../lib/api/serverApi";
-import { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getUser, editUser } from "../../../../lib/api/clientApi";
+import { useAuthStore } from "../../../../lib/store/authStore";
 import css from "./EditProfilePage.module.css";
 
-export const metadata: Metadata = {
-  title: "Notehub",
-  description: "Profille fetures",
-  openGraph: {
-    title: "Notehub",
-    description: "Profille fetures",
-    url: "/profile",
-    images: [
-      {
-        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Notehub preview image",
-      },
-    ],
-  },
-}
+const EditProfile = () => {
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
 
-const Profile = async () => {
-  const user = await getUser()
+  const [loading, setLoading] = useState(true);
+
+  const setUser = useAuthStore((state) => state.setUser);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const user = await getUser();
+        if (user) {
+          setUsername(user.username || "");
+          setEmail(user.email);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const data = await editUser({ username });
+    if (data) {
+      setUser(data);
+      router.push("/profile");
+    }
+  };
+
+  const handleCancel = () => router.back();
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>
-        <div className={css.header}>
-          <h1 className={css.formTitle}>Profile Page</h1>
-         
-          <Link href="/profile/edit" className={css.editProfileButton}>
-            Edit Profile
-          </Link>
-        </div>
-         <div className={css.avatarWrapper}>
-      <Image
-        src={user.avatar}
-        alt="User Avatar"
-        width={120}
-        height={120}
-        className={css.avatar}
-      />
-    </div>
-        <div className={css.profileInfo}>
-          <p>Username: {user?.username || "your_username"}</p>
-          <p>Email: {user?.email || "your_email@example.com"}</p>
-        </div>
+        <h1 className={css.formTitle}>Edit Profile</h1>
+
+        <form onSubmit={handleSubmit} className={css.profileInfo}>
+          <div className={css.usernameWrapper}>
+            <label htmlFor="username">Username:</label>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className={css.input}
+            />
+          </div>
+
+          <p>Email: {email}</p>
+
+          <div className={css.actions}>
+            <button type="submit" className={css.saveButton}>
+              Save
+            </button>
+            <button
+              type="button"
+              className={css.cancelButton}
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       </div>
     </main>
   );
-}
+};
 
-export default Profile;
+export default EditProfile;
