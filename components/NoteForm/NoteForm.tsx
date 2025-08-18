@@ -72,7 +72,6 @@ export const NoteForm = () => {
           id="tag"
           name="tag"
           className={css.select}
-          // value={tag}
           defaultValue={draft?.tag}
           onChange={handleChange}
           required
