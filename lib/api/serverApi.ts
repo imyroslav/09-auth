@@ -1,5 +1,5 @@
 import type { Note, GetNotes } from "../../types/note"
-import {SessionResponseData} from "../../types/user"
+import {SessionResponseData} from "../../types/session"
 import type { User } from "../../types/user"
 import { cookies } from "next/headers"
 import nextServer from "./api"
