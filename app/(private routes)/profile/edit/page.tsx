@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { getUser, editUser } from "../../../../lib/api/clientApi";
 import { useAuthStore } from "../../../../lib/store/authStore";
 import css from "./EditProfilePage.module.css";
 
 const EditProfile = () => {
   const router = useRouter();
+  const { user } = useAuthStore();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
 
@@ -48,6 +51,18 @@ const EditProfile = () => {
     <main className={css.mainContent}>
       <div className={css.profileCard}>
         <h1 className={css.formTitle}>Edit Profile</h1>
+
+        <div>
+          <Image
+            src={user?.avatar || "/default-avatar.svg"}
+            alt="User Avatar"
+            width={120}
+            height={120}
+            className={css.avatar}
+          />
+        </div>
+        
+
 
         <form onSubmit={handleSubmit} className={css.profileInfo}>
           <div className={css.usernameWrapper}>
